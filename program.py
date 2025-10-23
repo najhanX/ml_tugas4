@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 
 
-df = pd.read_csv("./kelulusan_realistic.csv")
+df = pd.read_csv("./kelulusan_mahasiswa.csv")
 
 
 for col in ["IPK", "Jumlah_Absensi", "Waktu_Belajar_Jam", "Lulus"]:
@@ -41,9 +41,9 @@ plt.show()
 ipk = df["IPK"].replace([np.inf, -np.inf], np.nan).dropna()
 
 plt.figure()
-# hist tanpa kde di histplot
+
 sns.histplot(data=df, x="IPK", bins=10, stat="density")
-# tambahkan KDE terpisah hanya kalau variasi memadai
+
 if ipk.nunique() > 1:
     sns.kdeplot(x=ipk)
 else:
